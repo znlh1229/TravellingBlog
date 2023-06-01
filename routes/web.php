@@ -15,9 +15,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'homepage']);
 
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
