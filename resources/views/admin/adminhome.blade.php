@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __(' Admin Dashboard') }}
@@ -14,4 +14,28 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    @include('admin.admin_css')
+</head>
+
+<body>
+    <header class="header">
+        @include('admin.header')
+    </header>
+    <div class="d-flex align-items-stretch">
+        <!-- Sidebar Navigation-->
+        <nav id="sidebar">
+            @include('admin.sidebar')
+        </nav>
+        <!-- Sidebar Navigation end-->
+        @include('admin.body')
+
+        @include('admin.footer')
+</body>
+
+</html>

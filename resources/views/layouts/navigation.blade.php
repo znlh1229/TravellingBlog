@@ -38,7 +38,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.edit')" class="test">
                             <p style="color:#A6B2BE"> {{ __('Profile') }}</p>
                         </x-dropdown-link>
 
@@ -47,8 +47,8 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                               <p style="color:#A6B2BE">{{ __('Log Out') }}</p>
+                                                this.closest('form').submit();" class="test ">
+                                <p style="color:#A6B2BE">{{ __('Log Out') }}</p>
                             </x-dropdown-link>
                         </form>
                     </x-slot>
