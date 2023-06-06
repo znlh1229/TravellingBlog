@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @include('admin.admin_css')
 </head>
 
@@ -25,7 +28,7 @@
             {{-- <div class="col-md-6 offset-3"> --}}
                 <table class="table table-striped table-dark">
                     <thead>
-                        <tr>
+                        <tr style="background:#B9B9B9">
                             <th scope="col">#</th>
                             <th scope="col">Post Title</th>
                             <th scope="col">Description</th>
@@ -34,15 +37,13 @@
                             <th scope="col">UserType</th>
                             <th scope="col">Image</th>
                             <th scope="col">Delete</th>
-
+                            <th scope="col">Edit</th>
                         </tr>
                     </thead>
                     @php
                     $no='1';
                     @endphp
                     @foreach ($post as $posts)
-
-
                     <tbody>
                         <tr>
                             <th scope="row">{{ $no }}</th>
@@ -56,25 +57,25 @@
                             </td>
                             <td>
                                 <a href="{{ url('delete_post',$posts->id) }}" class="btn btn-danger"
-                                    onclick="return confirm('Are You Sure You Want To Delete this?')">Delete</a>
+                                    onclick="return confirm('Are You Sure You Want To Delete This ?')">Delete</a>
+                            </td>
+                            <td>
+                                <a href="{{ url('edit_post',$posts->id) }}" class="btn btn-success">Edit</a>
                             </td>
                         </tr>
-
                     </tbody>
-
                     @php
                     $no++;
                     @endphp
                     @endforeach
                 </table>
-                {{--
-            </div> --}}
+            </div>
+
+
+
+            @include('admin.footer')
+
         </div>
-
-
-
-        @include('admin.footer')
-    </div>
 </body>
 
 </html

@@ -10,7 +10,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
@@ -32,23 +32,23 @@
             <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
             <div class="menu_main">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     @if (Route::has('login'))
-                    @auth
-                    <li>
+                        @auth
+                            <li><a href="{{ url('create_post') }}">Create Post</a></li>
+                            <li><a href="{{ url('my_post') }}">My Post</a></li>
+                            <li>
+                                <x-app-layout>
+                                </x-app-layout>
+                            </li>
+                        @else
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
 
-                        <x-app-layout>
-
-                        </x-app-layout>
-                    </li>
-                    @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
-
-                    @endauth
+                        @endauth
                     @endif
                 </ul>
             </div>
