@@ -8,9 +8,8 @@
 
     <style>
         #header {
-        background:
-        url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center
-        center / cover no-repeat ;
+            background:
+                url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat;
         }
     </style>
 </head>
@@ -22,7 +21,7 @@
 
     <!-- banner section end -->
 
-{{--
+    {{--
 
     <section id="header" class="jumbotron text-center">
         <h1 class="display-3">{{ $post_detail->title }}</h1>
@@ -34,24 +33,24 @@
 </div>
     </section> --}}
 
-<nav class="bg-dark navbar-dark">
-    <div class="container">
-        <a href="" class="navbar-brand"><i class="fas fa-tree mr-2"></i>{{$post_detail->title  }}</a>
+    <nav class="bg-dark navbar-dark">
+        <div class="container">
+            <a href="" class="navbar-brand"><i class="fas fa-tree mr-2"></i>{{ $post_detail->title }}</a>
+        </div>
+
+    </nav>
+    <section id="header" class="jumbotron text-center">
+        <h1 class="display-3">{{ $post_detail->title }}</h1>
+        <span class="lead " style="color: white">Post by : {{ $post_detail->usertype }}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="lead" style="color: white">Date : {{ $post_detail->created_at->diffForHumans() }}</span>
+
+    </section>
+
+    <div class="col-md-4 offset-4">
+
+        <img src="/postimage/{{ $post_detail->image }}" alt="" class="">
+        <p class="text-center">{{ $post_detail->description }}</p>
     </div>
-
-</nav>
-<section id="header" class="jumbotron text-center">
-   <h1 class="display-3">{{ $post_detail->title }}</h1>
-    <span class="lead " style="color: white">Post by : {{ $post_detail->usertype }}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="lead" style="color: white">Date : {{ $post_detail->created_at->diffForHumans() }}</span>
-
-</section>
-
-<div class="col-md-4 offset-4">
-
-    <img src="/postimage/{{ $post_detail->image }}" alt="" class="">
-    <p>{{ $post_detail->description }}</p>
-</div>
 
 
     @include('home.footer')

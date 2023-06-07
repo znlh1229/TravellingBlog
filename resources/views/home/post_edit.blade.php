@@ -2,17 +2,16 @@
 <html lang="en">
 
 <head>
+    <base href="/public">
     @include('home.css')
-    <style>
 
-    </style>
 </head>
 
 <body>
 
     @include('home.header')
     <section id="" class="text-center mt-5">
-        <h3 class="display-3 text-white">Create Post</h3>
+        <h6 class="display-3 text-white">User Post Edit</h6>
         <span class="lead " style="color: dark">Open your door to the world!</span><br>
         <span class="lead "
             style="color: dark;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">“Experience our
@@ -29,39 +28,38 @@
                 </div>
                 <div class="col-md-6 bg-dark">
                     <div class="mt-4">
-                        @if (session()->has('success_user'))
+                        @if (session()->has('success_update'))
                             <div class="alert alert-success">
-                                {{ session()->get('success_user') }}
+                                {{ session()->get('success_update') }}
                             </div>
                         @endif
                     </div>
-                    <form action="{{ url('user_post_create') }}" class="p-4 text-white" method="POST"
+                    <form action="{{ url('my_post_update', $mypost_show->id) }}" class="p-4 text-white" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name"> Title</label>
-                            <input type="text" class="form-control" name="title">
-                            @error('title')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            <input type="text" class="form-control" name="title" value="{{ $mypost_show->title }}">
+
                         </div>
                         <div class="form-group">
                             <label for="email"> Description</label>
                             <textarea type="text" name="description" cols="30" rows="10" placeholder="Enter Description"
-                                class="form-control"> </textarea>
+                                class="form-control"> {{ $mypost_show->description }}</textarea>
 
-                            @error('description')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Old Images</label>
+                            <img src="/postimage/{{ $mypost_show->image }}" alt="" width="130px">
+
                         </div>
                         <div class="form-group">
                             <label for="pwd"> Images</label>
                             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
-                            @error('images')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+
                         </div>
-                        <button type="submit" class="btn btn-warning mb-3 mt-3 float-right">Create Post</button>
+                        <button type="submit" class="btn btn-warning mb-3 mt-3 float-right">Edit Post</button>
                     </form>
                 </div>
             </div>

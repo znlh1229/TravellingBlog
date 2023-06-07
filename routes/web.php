@@ -54,3 +54,16 @@ Route::get('/create_post', [HomeController::class, 'create_post'])->middleware('
 Route::post('/user_post_create', [HomeController::class, 'user_post_create'])->middleware('auth');
 
 Route::get('/my_post', [HomeController::class, 'my_post'])->middleware('auth');
+
+Route::get('/my_post_delete/{id}', [HomeController::class, 'my_post_delete'])->middleware('auth');
+
+Route::get('/my_post_edit/{id}', [HomeController::class, 'my_post_edit'])->middleware('auth');
+
+Route::post('/my_post_update/{id}', [HomeController::class, 'my_post_update'])->middleware('auth');
+
+
+//Accept and Reject
+
+Route::get('/accept_post/{id}', [AdminController::class, 'accept_post']);
+
+Route::get('/reject_post/{id}', [AdminController::class, 'reject_post']);

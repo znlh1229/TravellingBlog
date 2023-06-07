@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
+        $post = Post::where('post_status', '=', 'active')->get();
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
             if ($usertype == 'user') {
@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
     public function homepage()
     {
-        $post = Post::all();
+        $post = Post::where('post_status', '=', 'active')->get();
         return view('home.homepage', compact('post'));
     }
 
@@ -54,7 +54,7 @@ class HomeController extends Controller
         $user = Auth()->user();
         $userid = $user->id;
         $username = $user->name;
-        $usertype = $user->type;
+        $usertype = $user->usertype;
 
 
         $post = new Post;
@@ -74,7 +74,7 @@ class HomeController extends Controller
         }
         $post->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success_user', 'User Post Create Successful');
     }
 
 
@@ -85,5 +85,35 @@ class HomeController extends Controller
         $userid = $user->id;
         $data = Post::where('user_id', '=', $userid)->get();
         return view('home.my_post', compact('data'));
+    }
+
+
+    public function my_post_delete($id)
+    {
+        $data = Post::find($id);
+        $data->delete();
+        return redirect()->back()->with('delete_my_post', 'Delete Post is Successful');
+    }
+
+    public function my_post_edit($id)
+    {
+        $mypost_show = Post::find($id);
+        return view('home.post_edit', compact('mypost_show'));
+    }
+
+    public function my_post_update(Request $request, $id)
+    {
+        $data = Post::find($id);
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $image = $request->image;
+        if ($image) {
+
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('postimage', $imagename);
+            $data->image = $imagename;
+        }
+        $data->save();
+        return redirect()->back()->with('success_update', 'User Post Update is Successful');
     }
 }
